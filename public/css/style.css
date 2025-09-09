@@ -181,7 +181,7 @@ body {
 .search-btn {
     background-color: #fe424d;
     color: #fff;
-    border-radius: 25px;
+    border-radius: 25px !important;   
     padding: 0 1rem 0 1rem;
 }
 
@@ -196,7 +196,7 @@ body {
 }
 
 .search-inp {
-    border-radius: 25px;
+    border-radius: 25px !important;
     padding: 0.5rem 3rem 0.5rem 3rem;
     font-size: 1rem;
 }
