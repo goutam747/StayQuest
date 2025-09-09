@@ -17,6 +17,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const { setShowSearch } = require("./middleware");
+const searchRouter = require("./routes/search.js");
 
 // Apply to every request
 app.use(setShowSearch);
@@ -117,6 +118,10 @@ app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
 
+
+
+//For search
+app.use("/search", searchRouter);
 
 // 404 handler – catches all unmatched routes
 app.use((req, res, next) => {
