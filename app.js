@@ -1,3 +1,6 @@
+/*Important note- To run this project on localhost first give network access in mongodb atlas to your current ip address otherwise it may give error */
+
+
 if (process.env.NODE_ENV != "production") {
     require("dotenv").config();
 }
@@ -137,6 +140,7 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(8080, () => {
-  console.log("server is listening to port 8080");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
 });
