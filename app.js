@@ -1,4 +1,4 @@
-/*Important note- To run this project on localhost first give network access in mongodb atlas to your current ip address otherwise it may give error */
+/*Important note- To run this project on localhost first give network access in mongodb atlas to your current ip address otherwise it may give error or can simply while whiltelist the (0.0.0.0/0) for testing in mongodb atlas  */
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -23,9 +23,13 @@ const searchRouter = require("./routes/search.js");
 // Apply to every request (this middleware only depends on nothing DB-specific)
 app.use(setShowSearch);
 
+
+//MVC structure — all different features separated into routes
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+
+
 
 const dbUrl = process.env.ATLASDB_URL || "mongodb://localhost:27017/StayQuest";
 
@@ -52,13 +56,19 @@ mongoose.connection.once("open", () => {
   console.log("✅ Mongoose connection open");
 });
 
+
+//View Engine Setup (EJS + ejsMate)
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+//Middleware Setup
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+
+//Session Store (MongoDB)
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
@@ -74,6 +84,8 @@ store.on("error", (err) => {
   console.error("❌ MONGO SESSION STORE ERROR:", err);
 });
 
+
+//Session Options
 const sessionOptions = {
   store,
   secret: process.env.SECRET || "thisshouldbeasecret",
@@ -90,10 +102,11 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
+
+//Passport.js Authentication
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
