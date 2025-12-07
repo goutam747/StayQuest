@@ -5,8 +5,8 @@ StayQuest is a full-stack rental web application built on the **MVC architecture
 
 Features-
 
-*User registration and login with secure authentication
-*Add, update, view, and delete property listings (CRUD)
+User registration and login with secure authentication
+Add, update, view, and delete property listings (CRUD)
 *Upload images for properties
 *Write and view property reviews
 *Session handling to keep users logged in
