@@ -129,7 +129,7 @@ app.use((req, res, next) => {
 
 
 app.get("/", (req, res) => {
-  res.send("StayQuest backend is running");
+  res.redirect("/listings");
 });
 
 app.use("/listings", listingRouter);
