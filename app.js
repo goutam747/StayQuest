@@ -127,12 +127,21 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.get("/", (req, res) => {
+  res.send("StayQuest backend is running");
+});
+
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
 // For search
 app.use("/search", searchRouter);
+
+
+
+
 
 // 404 handler – catches all unmatched routes
 app.use((req, res, next) => {
