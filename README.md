@@ -15,5 +15,5 @@ Features-
 
 *Session handling to keep users logged in
 
-### 🚀 Live Demo
+### Live Demo
 👉 [View Live App on Render](https://stayquest-2vv0.onrender.com/listings)
